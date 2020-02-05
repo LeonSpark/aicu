@@ -258,7 +258,7 @@ class IntentClsModel(AICModel):
         eval_example = []
         for i, text in enumerate(to_predict):
             seg_list = list(filter(lambda x: len(x) >= 3, jieba.cut_for_search(text)))
-            if any(x in poi for x in seg_list) and len(x) >= int(len(text)/2):
+            if any(x in poi and len(x) >= int(len(text)/2) for x in seg_list):
                 eval_example.append(InputExample(i, text, None, "19"))
             else:
                 eval_example.append(InputExample(i, text, None, "0"))
