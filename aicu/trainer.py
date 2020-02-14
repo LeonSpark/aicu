@@ -15,7 +15,7 @@ def _get_parser():
 def main():
     parser = _get_parser()
     args = parser.parse_args()
-    model = IntentClsModel(args)
+    model = IntentClsModel(args, num_labels=40)
     #model = NamedEntityRecognitionModel(args)
     model.train()
     # model.predict(['去荷兰需要换荷兰盾么'])

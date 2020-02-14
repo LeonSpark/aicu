@@ -20,7 +20,7 @@ class IntentClsProcessor(DataProcessor):
         这是类型3  c
         a,b,c can also be number
     """
-
+        
     def get_train_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
