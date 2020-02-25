@@ -1,6 +1,0 @@
-#pytorch
-tqdm
-pandas
-numpy
-torchtext
-transformers

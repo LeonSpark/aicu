@@ -20,7 +20,9 @@ class IntentClsProcessor(DataProcessor):
         这是类型3  c
         a,b,c can also be number
     """
-        
+    def __init__(self, num_labels):
+        self.num_labels = num_labels
+
     def get_train_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
@@ -33,7 +35,7 @@ class IntentClsProcessor(DataProcessor):
 
     def get_labels(self):
         """See base class."""
-        return list(map(str, range(40)))
+        return list(map(str, range(self.num_labels)))
 
     def _create_examples(self, lines, set_type):
         """Creates examples for the training and dev sets."""

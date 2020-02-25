@@ -27,16 +27,15 @@ logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s -   %(message
 
 
 class IntentClsModel(AICModel):
-    def __init__(self, args, use_cuda=True):
+    def __init__(self, args, num_labels=2, use_cuda=True):
         self.type = 'sequence_classification'
         self.args = args
         config_class, model_class, tokenizer_class = MODEL_CLASSES[self.type][self.args.model_type]
-
+        self.num_labels = num_labels 
         task_name = self.args.task_name.lower()
         self.task = task_name
-        self.processor = classifier_processors[task_name]()
+        self.processor = classifier_processors[task_name](num_labels)
         self.label_list = self.processor.get_labels()
-        self.num_labels = len(self.label_list)
         if use_cuda:
             if torch.cuda.is_available():
                 self.device = torch.device('cuda')
@@ -178,7 +177,8 @@ class IntentClsModel(AICModel):
                                 logs[eval_key] = value
                         loss_scalar = (tr_loss - logging_loss) / args.logging_steps
                         learning_rate_scalar = scheduler.get_lr()[0]
-                        logs['learning_rate'] = learning_rate_scalar
+                       # learning_rate_scalar = args.learning_rate
+                        logs['learning_rate'] = learning_rate_scalar 
                         logs['loss'] = loss_scalar
                         logging_loss = tr_loss
 
