@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+    export GIT_LFS_SKIP_SMUDGE=1 &&
+    df -h &&
+    git clone --depth 1 --single-branch --no-checkout https://yali2:d6ayzln5eibtjwqri6rkp5rsw6rroem5c56boyosrdg6yelwavla@msasg.visualstudio.com/DefaultCollection/QAS/_git/SearchGoldQASData &&
+    df -h &&
+    git checkout master -- deploy/builds/data/latest/test/MachineLearning/MLG 
+  displayName: 'Run a multi-line script'
