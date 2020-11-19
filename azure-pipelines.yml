@@ -7,6 +7,7 @@ trigger:
 - master
 
 pool:
+  name: vmssagent
   vmImage: 'ubuntu-latest'
 
 steps:
